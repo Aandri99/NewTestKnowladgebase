@@ -17,8 +17,7 @@ The Red Pitaya, in its capacity as an oscilloscope, is used in this lab to measu
 
 Crucially, there is a simple mathematical relationship between the period (T) and frequency (f) of a waveform, expressed by the equation:
 
-.. math::
-f = \frac{1}{T}
+.. math:: f = \frac{1}{T}
 
 This equation highlights that the frequency is the reciprocal of the period, and vice versa.
 
@@ -30,8 +29,7 @@ In this lab, we delve into the concept of phase difference by observing two 1500
 
 The phase difference (Φ) for signals of equal frequency can be calculated using the formula:
 
-.. math::
-\phi = 2\pi f\Delta t
+.. math:: \phi = 2\pi f\Delta t
 
 Here, Δt represents the time delay between the two waveforms.
 
@@ -43,8 +41,7 @@ The spectrum of a pure sinusoid will show a single peak at the sinusoid's freque
 
 The conversion from a linear power scale (P_lin) to dBm is given by:
 
-.. math::
-P_{dBm} = 10\log_{10}\frac{P_{lin}}{1mW}
+.. math:: P_{dBm} = 10\log_{10}\frac{P_{lin}}{1mW}
 
 Comparing Waveforms in the Time Domain
 ------------------------------------------
