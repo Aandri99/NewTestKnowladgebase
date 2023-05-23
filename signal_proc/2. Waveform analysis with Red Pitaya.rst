@@ -1,150 +1,104 @@
 #########################################################
-Measuring external waveforms with the Red Pitaya
+Measuring External Waveforms with the Red Pitaya
 #########################################################
 
-=====
-Goals
-=====
+===================
+Introduction
+===================
+The Red Pitaya is a versatile platform that enables the measurement and analysis of external waveforms. In this guide, we will explore various tasks and questions to gain insights into the characteristics of discrete time systems using the Red Pitaya's web applications. We will analyze waveforms from different sources, such as the USB soundcard, PC soundcard, and the Red Pitaya's own DAC. Along the way, we will discuss important concepts and theories related to each analysis and understand how they will be applied in the tasks.
 
-View external signals via the red pitaya, and identify various physical
-phenomena associated with discrete time systems.
+Bandwidth
+===================
+Bandwidth refers to the range of frequencies that a device can accurately reproduce. In the context of audio devices like DACs (Digital-to-Analog Converters), bandwidth is determined by the device's sample rate. The sample rate represents the number of samples per second that the DAC can process. According to the Nyquist-Shannon sampling theorem, the maximum frequency that can be accurately represented by a DAC is half the sample rate (known as the Nyquist frequency).
+
+For example, if a DAC has a sample rate of 44.1 kHz, its bandwidth would be limited to 22.05 kHz. Frequencies above the Nyquist frequency will be improperly represented, leading to aliasing. Aliasing occurs when higher frequency components "fold back" into the lower frequency range, causing distortion and artifacts in the waveform.
+
+In the tasks ahead, we will experimentally observe the bandwidth limitation of the Red Pitaya's audio DAC. By analyzing waveforms and observing aliasing effects, we can estimate the sample rate (bandwidth) of the DAC. This understanding will help us assess the device's ability to accurately reproduce high-frequency signals and make informed decisions about signal acquisition and processing.
+
+Bit Depth and Quality
+===================
+Bit depth is another crucial factor that affects the quality of the output waveform produced by an audio DAC. Bit depth refers to the number of bits used to represent each sample of the analog waveform. A higher bit depth allows for a greater number of quantization levels, resulting in improved signal resolution and fidelity.
+
+For example, a DAC with a bit depth of 16 bits can represent the audio signal using 2^16 (65,536) discrete levels. This provides a higher level of detail compared to a DAC with a bit depth of 8 bits, which can only represent the signal using 2^8 (256) levels. The increased quantization levels in higher bit depth DACs result in smoother and more accurate waveform reconstruction.
+
+In the tasks, we will examine the effects of different bit depths on the quality of the Red Pitaya's DAC output. By analyzing sinewave excitation signals in the time and frequency domains, we can observe the impact of bit depth on waveform resolution, dynamic range, and overall signal fidelity. This knowledge will help us make informed decisions about the appropriate bit depth for specific measurement or audio playback requirements.
+
+Crosstalk
+===================
+Crosstalk refers to the unwanted interference or leakage of signals between different channels of a device. In the context of the Red Pitaya, crosstalk can occur between the input channels. Crosstalk can result from electrical coupling, inadequate channel isolation, or improper signal routing.
+
+Understanding and quantifying crosstalk is crucial for accurate signal measurements and analysis. In the tasks, we will focus on analyzing the crosstalk effects between input channels of the Red Pitaya. By setting up sinewaves of differing frequencies on each channel and analyzing the spectra of the signals, we can quantify and visualize the cross-channel interference.
+
+By examining the time and frequency domains of the captured waveforms, we can assess the extent of crosstalk and its impact on signal fidelity. Crosstalk analysis allows us to identify any signal bleed between channels and make adjustments to minimize interference and ensure accurate measurements.
 
 ===================
 Tasks and Questions
 ===================
+For these tasks, you will be using the Red Pitaya's web applications and MATLAB to analyze waveforms and perform measurements. Make sure to follow the instructions provided in the slides and the accompanying MATLAB script.
 
-For these tasks, you will be viewing multiple waveforms with the Red
-Pitaya’s Web applications. We will be providing external signals via the
-provided USB soundcard in the lab kit, the Red Pitaya’s DAC, and
-optionally, the PC’s native soundcard via the provided MATLAB script.
-Instructions are contained in the slides, and provided MATLAB mlx
-script.
+Task 1: Audio DAC Bandwidth
+===================
+Show at least one plot demonstrating aliasing in the time domain and frequency domain.
+Observe the frequency of the aliased wave and estimate the sample rate (bandwidth) of the audio DAC by comparing the measured frequency with the expected frequencies for different input frequencies.
+Expected Results:
 
-Single channel analysis
------------------------
+In the time domain plot, the aliased wave will exhibit distortions, such as jagged edges or waveform folding.
+In the frequency domain plot, the aliased wave will show energy at frequencies that are not present in the original signal.
+The measured frequency of the aliased wave will deviate from the expected frequency.
+Based on the observed aliasing effects, the estimated sample rate (bandwidth) of the audio DAC can be determined.
 
-**For all of this analysis, set the second channel to output all zeros
-in MATLAB, as described in the slides and class time instruction.**
+Sample Rate (Bandwidth) Estimation: Sample Rate = 2 * (Highest Expected Frequency)
 
-Audio DAC Bandwidth
-^^^^^^^^^^^^^^^^^^^
+Task 2: Audio DAC Bit Depth and Quality
+===================
+Use a sinewave excitation signal with a frequency of 1kHz.
+Analyze the samples in both the time and frequency domains to observe the effects of different bit depths on the output waveform.
+Expected Results:
 
-We have mentioned that audio devices tend to have bandwidth limits in
-the range of 20kHz due to their sample rate. Let’s experimentally
-observe this. Using a pure sine wave tone with sufficient amplitude.
+In the time domain, higher bit depths will result in smoother and more detailed waveform reconstruction.
+In the frequency domain, higher bit depths will provide better frequency resolution and reduced quantization noise.
+The amplitude and shape of the waveform will be influenced by the bit depth, with higher bit depths allowing for more accurate representation of the original signal.
+Equations: None
 
-1. Show at least one plot demonstrating aliasing in the time domain, and
-   frequency domain.
+Task 3: USB Soundcard
+===================
+a) Time Domain Analysis:
 
-2. Observe the frequency of the aliased wave appears to have, and
-   comment on what you estimate to be the sample rate (bandwidth) of the
-   card.
+Capture waveforms from the USB soundcard.
+Analyze the waveforms in the time domain to observe their characteristics.
+Expected Results:
 
-Hint: One way to do this is to step through each of the following
-example frequencies (for example like those given in the table below),
-and look for when the measured frequency doesn’t match the expected
-frequency.
+In the time domain, the captured waveforms will exhibit various shapes and durations, representing different external signals.
+Waveforms may show characteristics such as pulse widths, rise and fall times, and overall waveform behavior.
+b) Frequency Domain Analysis:
 
-+-----------------------------------------------------------------------+
-| Frequency (kHz)                                                       |
-+=======================================================================+
-| 18                                                                    |
-+-----------------------------------------------------------------------+
-| 19                                                                    |
-+-----------------------------------------------------------------------+
-| 20                                                                    |
-+-----------------------------------------------------------------------+
-| 22                                                                    |
-+-----------------------------------------------------------------------+
-| 23                                                                    |
-+-----------------------------------------------------------------------+
-| 24                                                                    |
-+-----------------------------------------------------------------------+
-| 25                                                                    |
-+-----------------------------------------------------------------------+
-| 30                                                                    |
-+-----------------------------------------------------------------------+
+Perform a frequency analysis on the captured waveforms to identify the frequency components and their magnitudes.
+Expected Results:
 
-Audio DAC Bit depth and quality
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In the frequency domain, the analysis will reveal the spectral content of the waveforms.
+Dominant frequencies, harmonics, and noise components can be identified.
 
-In addition to a sample rate, Audio DACs have a known number of
-quantized states. We will observe how this can appear by using multiple
-DACs, and why the rule of thumb of more bits is better is usually true.
+Task 4: Crosstalk
+===================
+a) Red Pitaya - Time Domain:
 
-For all tests, use a sinewave excitation signal with a frequency of
-1kHz. For each sinewave, analyze the samples through both the time and
-frequency domains.
+Capture waveforms from both input channels of the Red Pitaya.
+Analyze the waveforms in the time domain to observe any crosstalk effects.
+Expected Results:
 
-USB Soundcard
-^^^^^^^^^^^^^
+In the time domain, there may be noticeable interference or bleed between the channels, affecting the waveform integrity.
+b) Red Pitaya - Frequency Domain:
 
-a) Time domain
+Perform a frequency analysis on the captured waveforms from each channel to quantify the crosstalk effects.
+Expected Results:
 
-b) Frequency Domain
+In the frequency domain, calculate the ratio of the strength (in linear and dB) of the fundamental frequency to the strength of the frequency of the other channel.
+Observe any asymmetry or imbalance in the crosstalk and its impact on signal integrity.
+Equations: None
 
-(optional) Higher frequency output
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: Throughout the tasks, compare the observed results with the expected outcomes based on the underlying theories discussed above. This will help validate the concepts and gain a deeper understanding of the Red Pitaya's capabilities in measuring external waveforms.
 
-As an optional demonstration, set the output frequency to be 10kHz on
-the Soundcard. Comment as to what appears to be occurring, and if there
-is any unusual behavior observed. Speculate as to the origin of the
-atypical behavior if any is observed.
-
-a) Time domain
-
-b) Frequency Domain
-
-PC Soundcard
-^^^^^^^^^^^^
-
-c) Time domain
-
-d) Frequency Domain
-
-(Optional) Red Pitaya Output
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Re Pitaya also has a DAC, which is what the analog outputs employ.
-We have already viewed some of the signals of the Red Pitaya before, but
-now let’s examine them for quantization artifacts. For this, configure
-the red pitaya in the usual Loopback configuration using the SMA cables
-we have previously used, and configure the output to the same 10kHz
-sinewave.
-
-e) Time domain
-
-f) Frequency Domain
-
-Dual Channel analysis
----------------------
-
-**For all of this analysis, both channels will have non-zero values in
-MATLAB.**
-
-Cross talk
-^^^^^^^^^^
-
-We previously observed the effect of cross talk between input channels
-of the red pitaya. Let’s try to better quantify this now that we can
-load the waveforms in MATLAB. To Do this, we will setup the soundcard to
-output two (2) sinewaves of differing frequency, one on each channel,
-and measure the spectrum of one channel for content of the other.
-
-Capture the cross talk behavior on the red pitaya’s web interface before
-attempting the MATLAB processing to ensure you can see the cross talk
-visually. Label in each screen the feature caused by cross talk.
-
-a) Red Pitaya - Time domain
-
-b) Red Pitaya Frequency Domain
-
-After this, acquire the data through MATLAB, and use the variable
-**ch_1_data** to show the effects of cross talk. (Hint, for the
-frequency domain, plot the amplitude spectrum, and compare the relative
-magnitudes of the frequency bins in both frequencies)
-
-In the frequency domain, calculate the ratio of strength (in linear and
-dB) of the fundamental frequency to the ratio of the strength of the
-frequency of the other channel. Do this for both channels, and comment
-on any observed asymmetry.
+=================
+Conclusion
+=================
+In conclusion, the Red Pitaya is a powerful tool for measuring external waveforms and gaining insights into various physical phenomena. Its capabilities in bandwidth analysis, bit depth and quality assessment, USB soundcard usage, and crosstalk quantification make it a valuable asset for signal analysis and experimentation.
