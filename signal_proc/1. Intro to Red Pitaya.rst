@@ -204,10 +204,15 @@ Fig. 9: Reference waveforms
 
 1. Capture a screen shot of the resulting waveforms. Comment on any visible similarities or differences.
 
-2. Try varying amplitudes/frequencies/phases of both channels and comment on the overall effects each variable does as observed in the
-   time domain. Capture a screen capture that demonstrates each observable change, and clearly label what change was done between each.
+_The two sine waves should look identical except for a phase shift. The wave on OUT2 should appear to start later than the wave on OUT1 because of the 90 degree phase shift._
+
+2. Try varying amplitudes/frequencies/phases of both channels and comment on the overall effects each variable does as observed in the time domain. Capture a screen capture that demonstrates each observable change, and clearly label what change was done between each.
+
+_Changes in amplitude would cause the height of the waves to change. Changes in frequency would cause the waves to appear more condensed or expanded along the time axis. Changes in phase would cause the wave to appear to start earlier or later relative to the other wave._
 
 3. (Take Home) Drop the amplitude of OUT2 to 0.45 V (0.5x amplitude). How much does the waveform’s Peak-to-Peak value change by?
+
+_When the amplitude is dropped to 0.45V, the peak-to-peak value should drop by half because the peak-to-peak value is essentially the amplitude of the signal._
 
 Sine and Square
 ^^^^^^^^^^^^^^^
@@ -282,6 +287,10 @@ A. Amplitude:
 B. Frequency:
 
 C. Phase:
+
+Conclusion
+===============
+The lab exercise provides a hands-on exploration of waveform analysis using the Red Pitaya, a versatile digital signal processing tool. Throughout the lab, we demonstrated how the Red Pitaya functions as an oscilloscope, signal generator, and spectrum analyzer to examine key properties of periodic waveforms including their period, frequency, phase, and spectral content. The comparative analysis of different waveform pairs in the time domain showcased the impact of varying amplitude, frequency, and phase. Notably, the Red Pitaya's spectrum analyzer capability allowed us to visualize and understand the harmonic content of complex waveforms. Ultimately, this lab experience underpins the profound understanding of signal processing concepts and bolsters the ability to perform comprehensive waveform measurements and analysis.
 
 Reference text
 ==============
